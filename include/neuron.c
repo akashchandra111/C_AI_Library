@@ -25,9 +25,38 @@ int init_network(int input_neuron_count, int hidden_layers, int* hidden_layers_n
 int destroy_network()	{
 	free(neuron);
 	free(hidden_layers_neuron_count);
+	free(output);
 
-	if(neuron == NULL && hidden_layers_neuron_count == NULL)	{
+	if(neuron == NULL && hidden_layers_neuron_count == NULL && output == NULL)	{
 		return 0;
 	}
 	else return 1;
 }
+
+// Function for providing i/p to NN
+void assign_input(int* input)	{
+	for(int i=0; i<ip_neuron_count; ++i)	{
+		*(neuron+i)->input = *(input+i);
+	}
+}
+
+// Function to get output after processing
+float* get_output()	{
+	output = (float*) malloc(sizeof(*output) * op_neuron_count);
+
+	int op_offset = tl_neurons - op_neuron_count;
+
+	for(int i=0; i<op_neuron_count; ++i)	{
+		*(output+i) = *(neuron-op_offset+i)->input;
+	}
+
+	return output;
+}
+
+// TODO
+/*
+	Add feedforward function
+	Add backup function
+	Add restore function
+	Add backpropagation function [but not now]
+*/

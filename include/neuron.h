@@ -12,6 +12,9 @@ typedef struct	{
 // This contains all the network
 Neuron* neuron;
 
+// Used to return the o/p to user
+float* output;
+
 int init_network(int ip_neuron_count, int hn_layers, int* hn_layers_neuron_count, int op_neuron_count, int tl_neurons);
 int destroy_network();
 

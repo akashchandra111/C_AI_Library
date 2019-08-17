@@ -1,6 +1,7 @@
 COMPILER = gcc
 WARNING = -Wall
 STD = gnu99
+OPTIMIZATION_LEVEL = -O3
 
 main: main.c
-	$(COMPILER) $(WARNING) -std=$(STD) $^ -o $@
+	$(COMPILER) $(WARNING) $(OPTIMIZATION_LEVEL) -std=$(STD) $^ -o $@
